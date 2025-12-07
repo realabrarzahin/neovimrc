@@ -5,12 +5,13 @@ vim.keymap.set("i", "<C-H>", "<C-w>", { noremap = true })
 
 vim.opt.fillchars = { vert = "│" }
 
-vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to Left Split' })
-vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to Down Split' })
-vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to Up Split' })
-vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to Right Split' })
-vim.keymap.set('n', '<C-c>', '<C-w>c', { desc = 'Close Current Split' })
-vim.keymap.set('n', '<leader><space>', ':nohlsearch<CR>', { silent = true })vim.keymap.set("n", "<leader><leader>", ":nohlsearch<cr>", { silent = true })
+vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Move to Left Split" })
+vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move to Down Split" })
+vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move to Up Split" })
+vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move to Right Split" })
+vim.keymap.set("n", "<C-c>", "<C-w>c", { desc = "Close Current Split" })
+vim.keymap.set("n", "<leader><space>", ":nohlsearch<CR>", { silent = true })
+vim.keymap.set("n", "<leader><leader>", ":nohlsearch<cr>", { silent = true })
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
@@ -36,12 +37,14 @@ end)
 
 local term_buf_nr = nil
 
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>cc",
-	":w<CR>:!g++ % && ./a.out < in | > out <CR>",
-	{ noremap = true, silent = true }
-)
+vim.keymap.set("n", "<leader>cc", function()
+	if vim.bo.filetype == "cpp" then
+		return ":w<CR>:!g++ % && ./a.out < in | > out<CR>"
+	elseif vim.bo.filetype == "c" then
+		return ":w<CR>:!gcc % && ./a.out < in | > out<CR>"
+	end
+	return ""
+end, { expr = true, silent = true })
 
 vim.keymap.set("n", "<leader>pi", function()
 	local main_win = vim.api.nvim_get_current_win()
