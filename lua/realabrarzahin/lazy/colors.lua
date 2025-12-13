@@ -7,17 +7,18 @@ function ColorMyPencils(color)
 end
 
 return {
-    {
-        "rose-pine/neovim",
-        name = "rose-pine",
-        config = function()
-            require('rose-pine').setup({
-                disable_background = true,
-            })
+	{
+		"rose-pine/neovim",
+		name = "rose-pine",
+		config = function()
+			require("rose-pine").setup({
+				disable_background = true,
+				disable_italics = true,
+			})
 
-            vim.cmd("colorscheme rose-pine")
+			vim.cmd("colorscheme rose-pine")
 
-            ColorMyPencils()
-        end
-    }
+			ColorMyPencils()
+		end,
+	},
 }
