@@ -1,6 +1,7 @@
+vim.opt.guicursor = ""
+
 vim.opt.clipboard = "unnamedplus"
 
-vim.keymap.set("i", "jj", "<Esc>", {})
 vim.keymap.set("i", "<C-H>", "<C-w>", { noremap = true })
 
 vim.opt.fillchars = { vert = "│" }
